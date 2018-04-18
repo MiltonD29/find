@@ -1,7 +1,7 @@
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Nuevo carro</ion-title>
+  <ion-navbar color="primary">
+    <ion-title text-center>Nuevo carro</ion-title>
     <ion-buttons start>
       <button ion-button (click)="cerrarModal()">
         <ion-icon name="md-close"></ion-icon>
@@ -23,7 +23,7 @@
       <hr>
       <p>{{ address }}</p>
       <hr/>
-      <form (ngSubmit)="guardarCarro()">
+      <form (ngSubmit)="guardarCarros()">
         <ion-item>
           <img [src]="foto" *ngIf="foto" />
           <button ion-button icon-left full type="button" (tap)="sacarFoto()">
@@ -33,8 +33,7 @@
         </ion-item>
         <hr/>
         <ion-item>
-          <ion-label>Descripción</ion-label>
-          <ion-textarea [(ngModel)]="description" name="description"></ion-textarea>
+          <ion-textarea [(ngModel)]="description" name="description" placeholder="Descripción"></ion-textarea>
         </ion-item>
         <button ion-button type="submit" block>Guardar carro</button>
       </form>

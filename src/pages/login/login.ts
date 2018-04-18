@@ -25,7 +25,7 @@ export class LoginPage {
   }
 
   ionViewDidLoad() {
-    
+
   }
 
   signin(){
@@ -44,8 +44,7 @@ export class LoginPage {
 
   }
 
-  login()
-{
+  login(){
     this.auth.loginUser(this.user.email,this.user.password ).then((user) => {
       }
     )

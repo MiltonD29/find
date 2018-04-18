@@ -12,9 +12,19 @@ export class FirebaseDbProvider {
     public auth: AuthProvider) {
   }
 
-  guardaUsuario(carro){
-     carro.id  = Date.now();
-     return this.afDB.database.ref('carros/'+this.auth.getUser()+'/'+carro.id).set(carro)
+  guardaCarro(carro){
+    if(!carro.id){
+      carro.id  = Date.now();
+    }
+    return this.afDB.database.ref('carros/'+this.auth.getUser()+'/'+carro.id).set(carro)
+  }
+
+  getCarros(){
+    return this.afDB.list('carros/'+this.auth.getUser()).valueChanges();
+  }
+
+  public borrarCarro(id){
+    this.afDB.database.ref('carros/'+this.auth.getUser()+'/'+id).remove();
   }
 
 }

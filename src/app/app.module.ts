@@ -7,6 +7,9 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
+import { ListadoPage } from '../pages/listado/listado'
+import { PerfilPage } from '../pages/perfil/perfil'
+import { InfoPage } from '../pages/info/info'
 
 import { LoginPageModule } from '../pages/login/login.module';
 import { ModalNuevoCarroPageModule } from '../pages/modal-nuevo-carro/modal-nuevo-carro.module';
@@ -21,6 +24,9 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthProvider } from '../providers/auth/auth';
 import { FirebaseDbProvider } from '../providers/firebase-db/firebase-db';
+import { DbProvider } from '../providers/db/db';
+import { SQLite } from '@ionic-native/sqlite';
+import { LaunchNavigator } from '@ionic-native/launch-navigator';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyABqftd0soQtEvySMtk1tjnL47GMKt3_EU",
@@ -35,7 +41,10 @@ export const firebaseConfig = {
   declarations: [
     MyApp,
     HomePage,
-    TabsPage
+    TabsPage,
+    ListadoPage,
+    PerfilPage,
+    InfoPage
     // LoginPage
   ],
   imports: [
@@ -52,7 +61,10 @@ export const firebaseConfig = {
     MyApp,
     HomePage,
     TabsPage,
-    LoginPage
+    LoginPage,
+    ListadoPage,
+    PerfilPage,
+    InfoPage
   ],
   providers: [
     StatusBar,
@@ -61,7 +73,10 @@ export const firebaseConfig = {
     AuthProvider,
     FirebaseDbProvider,
     Geolocation,
-    Camera
+    Camera,
+    DbProvider,
+    SQLite,
+    LaunchNavigator
   ]
 })
 export class AppModule {}

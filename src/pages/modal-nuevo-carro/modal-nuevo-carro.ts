@@ -3,6 +3,9 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 
 import { Camera, CameraOptions } from '@ionic-native/camera';
 
+//import { DbProvider } from '../../providers/db/db';
+import { FirebaseDbProvider } from '../../providers/firebase-db/firebase-db';
+
 declare var google: any;
 
 /**
@@ -28,7 +31,8 @@ export class ModalNuevoCarroPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private viewCtrl : ViewController,
-    private camera: Camera ) {
+    private camera: Camera,
+    private dbFirebase :FirebaseDbProvider) {
   }
 
   ionViewDidLoad() {
@@ -57,7 +61,6 @@ export class ModalNuevoCarroPage {
   }
 
   sacarFoto(){
-
     let cameraOptions : CameraOptions = {
         quality: 50,
         encodingType: this.camera.EncodingType.JPEG,
@@ -76,6 +79,20 @@ export class ModalNuevoCarroPage {
         console.log(err);
     });
   }
+
+  guardarCarros(){
+    let carro = {
+      lat: this.coords.lat,
+      lng: this.coords.lng ,
+      address: this.address,
+      description: this.description,
+      foto: this.foto
+    }
+    this.dbFirebase.guardaCarro(carro).then(res=>{
+        console.log('Sitio guardado en firebase:');
+        this.cerrarModal();
+    })
+}
 
   cerrarModal(){
     this.viewCtrl.dismiss();
