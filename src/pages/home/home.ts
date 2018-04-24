@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
 import { NavController, Platform, ModalController } from 'ionic-angular';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 
 import { AuthProvider } from '../../providers/auth/auth';
 
@@ -16,6 +16,8 @@ export class HomePage {
 
   map: any; // Manejador del mapa.
   coords : any = { lat: 0, lng: 0 }
+  // @ViewChild('map') mapElement: ElementRef;
+  // map: any;
 
   constructor(
     public navCtrl: NavController,
@@ -60,6 +62,21 @@ export class HomePage {
         console.log(error);
       }
     );
+
+
+
+    // let watch = this.geolocation.watchPosition()
+    //                 .subscribe((data) => {
+    //                  // data can be a set of coordinates, or an error (if an error occurred).
+    //                  // data.coords.latitude
+    //                  // data.coords.longitude
+    //                  // console.log(data);
+    //                  this.coords.lat = data.coords.latitude;
+    //                  this.coords.lng = data.coords.longitude;
+    //                  this.loadMap();
+    //                  // this.usuario.update({lat: data.coords.latitude, lng: data.coords.longitude});
+    //                 });
+
   }
 
   nuevoCarro(){
@@ -68,8 +85,6 @@ export class HomePage {
    mimodal.present();
   }
 
-  cerrarSesion(){
-      this.auth.logout();
-  }
+
 
 }

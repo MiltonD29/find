@@ -3,6 +3,15 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 
 import { AuthProvider } from '../../providers/auth/auth';
 
+import { HomePage } from '../../pages/home/home';
+import { RegisterPage } from "../../pages/register/register";
+
+import { Platform } from 'ionic-angular';
+import { Facebook } from '@ionic-native/facebook';
+
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
+
 
 
 @IonicPage()
@@ -21,11 +30,54 @@ export class LoginPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public auth : AuthProvider,
-    public alertCtrl : AlertController) {
+    public alertCtrl : AlertController,
+    private afAuth: AngularFireAuth,
+    private fb: Facebook,
+    private platform: Platform) {
   }
 
-  ionViewDidLoad() {
+  signInWithFacebook() {
 
+    if (this.platform.is('cordova')) {
+      //celular
+      this.fb.login(['email', 'public_profile']).then(res => {
+        const facebookCredential = firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken);
+        firebase.auth().signInWithCredential(facebookCredential).then( user => {
+
+          console.log(user);
+
+          this.auth.cargarUsuario(
+            user.displayName,
+            user.email,
+            user.photoURL,
+            user.uid,
+            'facebook'
+          );
+
+          this.navCtrl.setRoot(HomePage);
+
+        }).catch(e => console.log("Error con el login" + JSON.stringify(e)));
+      })
+
+    } else {
+      //escritorio
+      this.afAuth.auth
+        .signInWithPopup(new firebase.auth.FacebookAuthProvider())
+        .then(res => {
+
+          let user = res.user;
+
+          this.auth.cargarUsuario(
+            user.displayName,
+            user.email,
+            user.photoURL,
+            user.uid,
+            'facebook'
+          );
+
+          this.navCtrl.setRoot(HomePage);
+        });
+    }
   }
 
   signin(){
@@ -56,6 +108,10 @@ export class LoginPage {
       });
       alert.present();
     })
+  }
+
+  navRegister(){
+    this.navCtrl.setRoot(RegisterPage);
   }
 
 }

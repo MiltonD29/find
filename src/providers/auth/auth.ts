@@ -6,8 +6,24 @@ import * as firebase from 'firebase/app';
 @Injectable()
 export class AuthProvider {
 
+  usuario : Credenciales = { };
+
   constructor(  private afAuth :  AngularFireAuth  ) {
     console.log('Hello AuthProvider Provider');
+  }
+
+  cargarUsuario(nombre:string,
+                email:string,
+                imagen:string,
+                uid:string,
+                provider:string){
+
+    this.usuario.nombre = nombre;
+    this.usuario.email = email;
+    this.usuario.imagen = imagen;
+    this.usuario.uid = uid;
+    this.usuario.provider = provider;
+
   }
 
   // Registro de usuario
@@ -43,4 +59,12 @@ logout(){
     return this.afAuth.auth.currentUser.uid;
  }
 
+}
+
+export interface Credenciales {
+  nombre?:string;
+  email?:string;
+  imagen?:string;
+  uid?:string;
+  provider?:string;
 }
