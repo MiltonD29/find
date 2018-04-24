@@ -29,30 +29,12 @@
         </ion-item>
         <div padding>
           <button
-              ion-button
-              (click)="login()"
-              type="submit"
-              color="primary"
-              block>
-            Iniciar sesión
-          </button>
-
-          <button ion-button
-                  color="facebook"
-                  icon-left block
-                  (click)="signInWithFacebook()">
-            <ion-icon name="logo-facebook"></ion-icon>
-            Iniciar sesión con Facebook
-          </button>
-          <br>
-
-          <p>¿No tienes una cuenta?</p>
-          <button
             ion-button
-            (click)="navRegister()"
-            color="light"
+            (click)="signin()"
+            type="submit"
+            color="secondary"
             block
-            outline>
+            >
             Regístrate
           </button>
         </div>
