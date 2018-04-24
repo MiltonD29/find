@@ -9,6 +9,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 import { ListadoPage } from '../pages/listado/listado'
 import { PerfilPage } from '../pages/perfil/perfil'
+import { RegisterPage }  from '../pages/register/register';
 import { InfoPage } from '../pages/info/info'
 
 import { LoginPageModule } from '../pages/login/login.module';
@@ -18,6 +19,11 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Camera } from '@ionic-native/camera';
+import { ImagePicker } from '@ionic-native/image-picker';
+import { Crop } from '@ionic-native/crop';
+
+//Plugins
+import { Facebook } from '@ionic-native/facebook';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -44,7 +50,8 @@ export const firebaseConfig = {
     TabsPage,
     ListadoPage,
     PerfilPage,
-    InfoPage
+    InfoPage,
+    RegisterPage
     // LoginPage
   ],
   imports: [
@@ -64,7 +71,8 @@ export const firebaseConfig = {
     LoginPage,
     ListadoPage,
     PerfilPage,
-    InfoPage
+    InfoPage,
+    RegisterPage
   ],
   providers: [
     StatusBar,
@@ -74,9 +82,12 @@ export const firebaseConfig = {
     FirebaseDbProvider,
     Geolocation,
     Camera,
+    ImagePicker,
+    Crop,
     DbProvider,
     SQLite,
-    LaunchNavigator
+    LaunchNavigator,
+    Facebook
   ]
 })
 export class AppModule {}

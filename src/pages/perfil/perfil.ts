@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-/**
- * Generated class for the PerfilPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { AuthProvider, Credenciales } from '../../providers/auth/auth';
+
 
 @IonicPage()
 @Component({
@@ -15,11 +11,20 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class PerfilPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  user: Credenciales = {};
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public auth : AuthProvider,) {
+
+    console.log( this.auth.usuario );
+
+    this.user = this.auth.usuario;
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PerfilPage');
+  cerrarSesion(){
+    this.auth.logout();
   }
 
 }
