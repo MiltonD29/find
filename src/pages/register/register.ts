@@ -4,6 +4,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import { AuthProvider } from '../../providers/auth/auth';
 
 import { HomePage } from '../../pages/home/home';
+import { LoginPage } from '../../pages/login/login';
 
 import { Platform } from 'ionic-angular';
 import { Facebook } from '@ionic-native/facebook';
@@ -47,6 +48,10 @@ export class RegisterPage {
       alert.present();
     })
 
+  }
+
+  home(){
+    this.navCtrl.setRoot(LoginPage)
   }
 
 }
