@@ -49,7 +49,7 @@ export class LoginPage {
           this.auth.cargarUsuario(
             user.displayName,
             user.email,
-            user.photoURL,
+            user.photoURL + "?type=large",
             user.uid,
             'facebook'
           );
@@ -70,7 +70,7 @@ export class LoginPage {
           this.auth.cargarUsuario(
             user.displayName,
             user.email,
-            user.photoURL,
+            user.photoURL + "?type=large",
             user.uid,
             'facebook'
           );
